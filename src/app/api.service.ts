@@ -6,7 +6,7 @@ import { Customer } from "./customer";
   providedIn: "root"
 })
 export class ApiService {
-  apiURL: string = "http://localhost:8000";
+  apiURL: string = "http://localhost:8080";
 
 
   constructor(private httpClient: HttpClient) {
@@ -14,7 +14,7 @@ export class ApiService {
   }
 
   public createCustomer(customer: Customer) {
-    return this.httpClient.post(`${this.apiURL}/customers`,customer)
+    return this.httpClient.post(`${this.apiURL}/api/customer`, customer)
   }
 
   public updateCustomer(customer: Customer) {
@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   public getCustomerById(id: string){
-    return this.httpClient.get<Customer>(`${this.apiURL}/customers/${id}`)
+    return this.httpClient.get<Customer>(`${this.apiURL}/api/customer/${id}`)
   }
 
   public getCustomers() {

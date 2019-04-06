@@ -11,6 +11,13 @@
   <p>
   <span>Occupation: </span><span>{{occupation}}</span>
   </p>
+  <form (ngSubmit)="postCustomer(customer)" novalidate>
+    <input name="name" placeholder="New Customer Name" [(ngModel)]="customer.name">
+    <input name="occupation" placeholder="New Customer Occupation" [(ngModel)]="customer.occupation">
+    <input name="customerId" placeholder="New Customer Id" [(ngModel)] = "customer.id">
+    <button type ="submit">Post New Customer</button>
+  </form>
+  
 </div>
 
 
