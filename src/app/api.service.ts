@@ -16,6 +16,13 @@ export class ApiService {
   public createCustomer(customer: Customer) {
     return this.httpClient.post(`${this.apiURL}/api/customer`, customer)
   }
+  public getCustomerById(id: string){
+    return this.httpClient.get<Customer>(`${this.apiURL}/api/customer/${id}`)
+  }
+
+  public getCustomers(){
+    return this.httpClient.get<any>(`${this.apiURL}/api/customers`)
+  }
 
   public updateCustomer(customer: Customer) {
     return this.httpClient.put(`${this.apiURL}/customers/${customer}`,customer)
@@ -25,13 +32,7 @@ export class ApiService {
     return this.httpClient.delete(`${this.apiURL}/customers/${id}`)
   }
 
-  public getCustomerById(id: string){
-    return this.httpClient.get<Customer>(`${this.apiURL}/api/customer/${id}`)
-  }
 
-  public getCustomers() {
-    return this.httpClient.get("/customers")
-  }
 
 
   public getContacts(){

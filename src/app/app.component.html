@@ -3,22 +3,50 @@
   <h1>
     Customer Records
   </h1>
-  <input #customerId placeholder="Enter Customer Id"/>
+  <hr />
+  <button (click)="getCustomers()">Get Customer List</button>
+  <table style="width:100%">
+    <tr *ngIf="isGetCustomerListButtonClicked">
+      <th>Name</th>
+      <th>Occupation</th>
+      <th>Id</th>
+    </tr>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.occupation }}</td>
+      <td>{{ customer.id }}</td>
+    </tr>
+  </table>
+
+  <hr />
+  <input #customerId placeholder="Enter Customer Id" />
   <button (click)="getCustomerById(customerId.value)">Search</button>
   <p>
-  <span>Name: </span><span>{{name}}</span>
+    <span>Name: </span><span>{{ name }}</span>
   </p>
   <p>
-  <span>Occupation: </span><span>{{occupation}}</span>
+    <span>Occupation: </span><span>{{ occupation }}</span>
   </p>
+  <hr />
   <form (ngSubmit)="postCustomer(customer)" novalidate>
-    <input name="name" placeholder="New Customer Name" [(ngModel)]="customer.name">
-    <input name="occupation" placeholder="New Customer Occupation" [(ngModel)]="customer.occupation">
-    <input name="customerId" placeholder="New Customer Id" [(ngModel)] = "customer.id">
-    <button type ="submit">Post New Customer</button>
+    <input
+      name="name"
+      placeholder="New Customer Name"
+      [(ngModel)]="customer.name"
+    />
+    <input
+      name="occupation"
+      placeholder="New Customer Occupation"
+      [(ngModel)]="customer.occupation"
+    />
+    <input
+      name="customerId"
+      placeholder="New Customer Id"
+      [(ngModel)]="customer.id"
+    />
+    <button type="submit">Post New Customer</button>
   </form>
-  
+  <hr/>
 </div>
-
 
 <router-outlet></router-outlet>

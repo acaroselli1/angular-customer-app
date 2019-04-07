@@ -12,8 +12,16 @@ export class AppComponent implements OnInit {
 
   customer:Customer = new Customer();
 
+  customers:Customer[];
+
   name:string;
   occupation:string;
+  isGetCustomerListButtonClicked:boolean;
+
+  getCustomers(){
+    this.isGetCustomerListButtonClicked = true;
+    this.apiService.getCustomers().subscribe(data => this.customers = data);
+  }
 
   getCustomerById(id: string) {
     this.apiService.getCustomerById(id).subscribe(data => {
