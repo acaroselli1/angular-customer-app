@@ -19,18 +19,18 @@ export class ApiService {
   public getCustomerById(id: string){
     return this.httpClient.get<Customer>(`${this.apiURL}/api/customer/${id}`)
   }
+  public deleteCustomer(id: string) {
+    return this.httpClient.delete<Customer>(`${this.apiURL}/api/customer/${id}`)
+  }
 
   public getCustomers(){
     return this.httpClient.get<any>(`${this.apiURL}/api/customers`)
   }
-
+  
   public updateCustomer(customer: Customer) {
     return this.httpClient.put(`${this.apiURL}/customers/${customer}`,customer)
   }
 
-  public deleteCustomer(id: number) {
-    return this.httpClient.delete(`${this.apiURL}/customers/${id}`)
-  }
 
 
 

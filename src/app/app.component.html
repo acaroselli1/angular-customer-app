@@ -15,6 +15,7 @@
       <td>{{ customer.name }}</td>
       <td>{{ customer.occupation }}</td>
       <td>{{ customer.id }}</td>
+      <button (click)="deleteCustomer(customer.id)">delete</button>
     </tr>
   </table>
 

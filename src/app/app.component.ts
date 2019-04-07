@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "./api.service";
-import { Customer } from './customer';
+import { Customer } from "./customer";
 
 @Component({
   selector: "app-root",
@@ -10,33 +10,40 @@ import { Customer } from './customer';
 export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
-  customer:Customer = new Customer();
+  customer: Customer = new Customer();
 
-  customers:Customer[];
+  customers: Customer[];
 
-  name:string;
-  occupation:string;
-  isGetCustomerListButtonClicked:boolean;
+  name: string;
+  occupation: string;
+  isGetCustomerListButtonClicked: boolean;
 
-  getCustomers(){
+  getCustomers() {
     this.isGetCustomerListButtonClicked = true;
-    this.apiService.getCustomers().subscribe(data => this.customers = data);
+    this.apiService.getCustomers().subscribe(data => (this.customers = data));
   }
 
   getCustomerById(id: string) {
     this.apiService.getCustomerById(id).subscribe(data => {
-    
-     this.name = data.name;
-     this.occupation = data.occupation;
-     console.log(data);
-     console.log(this.name);
-     console.log(this.occupation);
+      this.name = data.name;
+      this.occupation = data.occupation;
+      console.log(data);
+      console.log(this.name);
+      console.log(this.occupation);
     });
   }
 
-  postCustomer(customer:Customer) {
-    this.apiService.createCustomer(customer).subscribe(data=>{
-      console.log(data)
+  deleteCustomer(id: string) {
+    this.apiService.deleteCustomer(id).subscribe(data => {
+      this.getCustomers();
+      console.log("Customer deleted!");
+    });
+  }
+
+  postCustomer(customer: Customer) {
+    this.apiService.createCustomer(customer).subscribe(data => {
+      this.getCustomers();
+      console.log(data);
       console.log("Posted new customer!");
     });
   }
