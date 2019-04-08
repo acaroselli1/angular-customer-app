@@ -48,6 +48,25 @@
     <button type="submit">Post New Customer</button>
   </form>
   <hr/>
+  <form (ngSubmit)="updateCustomer(updatedCustomer)" novalidate>
+    <input
+      name="updatedName"
+      placeholder="Customer Name"
+      [(ngModel)]="updatedCustomer.name"
+    />
+    <input
+      name="updatedOccupation"
+      placeholder="Customer Occupation"
+      [(ngModel)]="updatedCustomer.occupation"
+    />
+    <input
+      name="customerIdForUpdating"
+      placeholder="Customer Id"
+      [(ngModel)]="updatedCustomer.id"
+    />
+    <button type="submit">Update Customer</button>
+  </form>
+  <hr/>
 </div>
 
 <router-outlet></router-outlet>

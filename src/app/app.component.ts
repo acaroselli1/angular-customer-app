@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "./api.service";
 import { Customer } from "./customer";
+import { UpdatedCustomer } from './updatedCustomer';
 
 @Component({
   selector: "app-root",
@@ -11,6 +12,8 @@ export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   customer: Customer = new Customer();
+
+  updatedCustomer: UpdatedCustomer = new UpdatedCustomer();
 
   customers: Customer[];
 
@@ -35,8 +38,8 @@ export class AppComponent implements OnInit {
 
   deleteCustomer(id: string) {
     this.apiService.deleteCustomer(id).subscribe(data => {
+      console.log("Customer deleted!", data);
       this.getCustomers();
-      console.log("Customer deleted!");
     });
   }
 
@@ -45,6 +48,14 @@ export class AppComponent implements OnInit {
       this.getCustomers();
       console.log(data);
       console.log("Posted new customer!");
+    });
+  }
+
+  updateCustomer(customer: Customer) {
+    this.apiService.updateCustomer(customer).subscribe(data => {
+      this.getCustomers();
+      console.log(data);
+      console.log("Customer updated!");
     });
   }
 

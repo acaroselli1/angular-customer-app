@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Customer } from "./customer";
+import { UpdatedCustomer } from './updatedCustomer';
 
 @Injectable({
   providedIn: "root"
@@ -27,8 +28,8 @@ export class ApiService {
     return this.httpClient.get<any>(`${this.apiURL}/api/customers`)
   }
   
-  public updateCustomer(customer: Customer) {
-    return this.httpClient.put(`${this.apiURL}/customers/${customer}`,customer)
+  public updateCustomer(customer: UpdatedCustomer) {
+    return this.httpClient.put<UpdatedCustomer>(`${this.apiURL}/api/customers`,customer)
   }
 
 
