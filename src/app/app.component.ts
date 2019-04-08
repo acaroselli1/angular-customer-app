@@ -24,38 +24,33 @@ export class AppComponent implements OnInit {
   getCustomers() {
     this.isGetCustomerListButtonClicked = true;
     this.apiService.getCustomers().subscribe(data => (this.customers = data));
+    console.log("Got all customers!");
   }
 
   getCustomerById(id: string) {
     this.apiService.getCustomerById(id).subscribe(data => {
-      this.name = data.name;
-      this.occupation = data.occupation;
-      console.log(data);
-      console.log(this.name);
-      console.log(this.occupation);
+      console.log("Got customer by id!", data);
     });
   }
 
   deleteCustomer(id: string) {
     this.apiService.deleteCustomer(id).subscribe(data => {
-      console.log("Customer deleted!", data);
       this.getCustomers();
+      console.log("Customer deleted!", data);
     });
   }
 
   postCustomer(customer: Customer) {
     this.apiService.createCustomer(customer).subscribe(data => {
       this.getCustomers();
-      console.log(data);
-      console.log("Posted new customer!");
+      console.log("Posted new customer!", data);
     });
   }
 
   updateCustomer(customer: Customer) {
     this.apiService.updateCustomer(customer).subscribe(data => {
       this.getCustomers();
-      console.log(data);
-      console.log("Customer updated!");
+      console.log("Customer updated!", data);
     });
   }
 
