@@ -11,7 +11,7 @@
       <th>Occupation</th>
       <th>Id</th>
     </tr>
-    <tr *ngFor="let customer of customers">
+    <tr *ngFor="let customer of apiService.customers | async">
       <td>{{ customer.name }}</td>
       <td>{{ customer.occupation }}</td>
       <td>{{ customer.id }}</td>
@@ -23,10 +23,10 @@
   <input #customerId placeholder="Enter Customer Id" />
   <button (click)="getCustomerById(customerId.value)">Search</button>
   <p>
-    <span>Name: </span><span>{{ name }}</span>
+    <span>Name: </span><span>{{ searchedCustomer.name }}</span>
   </p>
   <p>
-    <span>Occupation: </span><span>{{ occupation }}</span>
+    <span>Occupation: </span><span>{{ searchedCustomer.occupation }}</span>
   </p>
   <hr />
   <form (ngSubmit)="postCustomer(customer)" novalidate>

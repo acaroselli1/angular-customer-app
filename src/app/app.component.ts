@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "./api.service";
 import { Customer } from "./customer";
-import { UpdatedCustomer } from './updatedCustomer';
+import { Observable } from 'rxjs';
+// import { UpdatedCustomer } from './updatedCustomer';
 
 @Component({
   selector: "app-root",
@@ -9,27 +10,40 @@ import { UpdatedCustomer } from './updatedCustomer';
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
   customer: Customer = new Customer();
 
-  updatedCustomer: UpdatedCustomer = new UpdatedCustomer();
+  updatedCustomer: Customer = new Customer();
 
-  customers: Customer[];
+  searchedCustomer: Customer = new Customer();
 
-  name: string;
   occupation: string;
+
   isGetCustomerListButtonClicked: boolean;
 
+  // getCustomers() {
+  //   this.isGetCustomerListButtonClicked = true;
+  //   this.apiService.getCustomers().subscribe(data => (this.customers = data));
+  //   console.log("Got all customers!");
+  // }
+
+
+  // getCustomers() {
+  //   this.isGetCustomerListButtonClicked = true;
+  //   this.apiService.getCustomers().subscribe(data => (this.customers = data));
+  //   console.log("Got all customers!");
+  // }
+
+
   getCustomers() {
-    this.isGetCustomerListButtonClicked = true;
-    this.apiService.getCustomers().subscribe(data => (this.customers = data));
-    console.log("Got all customers!");
+    this.apiService.getCustomers();
   }
 
   getCustomerById(id: string) {
     this.apiService.getCustomerById(id).subscribe(data => {
       console.log("Got customer by id!", data);
+      this.searchedCustomer = data;
     });
   }
 
@@ -54,5 +68,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }
