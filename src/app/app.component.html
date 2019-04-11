@@ -4,7 +4,7 @@
     Customer Records
   </h1>
   <hr />
-  <button (click)="getCustomers()">Get Customer List</button>
+  <button mat-raised-button (click)="getCustomers()">Get Customer List</button>
   <table style="width:100%">
     <tr *ngIf="isGetCustomerListButtonClicked">
       <th>Name</th>
@@ -20,8 +20,10 @@
   </table>
 
   <hr />
-  <input #customerId placeholder="Enter Customer Id" />
-  <button (click)="getCustomerById(customerId.value)">Search</button>
+  <mat-form-field>
+  <input  matInput #customerId placeholder="Enter Customer Id" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="getCustomerById(customerId.value)">Search</button>
   <p>
     <span>Name: </span><span>{{ searchedCustomer.name }}</span>
   </p>
