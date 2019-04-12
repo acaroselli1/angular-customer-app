@@ -22,6 +22,8 @@ export class AppComponent implements OnInit {
 
   isGetCustomerListButtonClicked: boolean;
 
+  displayedColumns:string[] = ['name','occupation','id','delete'];
+
   // getCustomers() {
   //   this.isGetCustomerListButtonClicked = true;
   //   this.apiService.getCustomers().subscribe(data => (this.customers = data));
@@ -38,6 +40,7 @@ export class AppComponent implements OnInit {
 
   getCustomers() {
     this.apiService.getCustomers();
+    this.isGetCustomerListButtonClicked = true;
   }
 
   getCustomerById(id: string) {

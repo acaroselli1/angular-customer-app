@@ -1,0 +1,25 @@
+.form {
+  width: "100%";
+}
+
+.mat-row:nth-child(odd) {
+  background-color: #673ab7;
+}
+
+.mat-row:nth-child(even) {
+  background-color: grey;
+}
+
+.mat-cell {
+  color: white;
+}
+
+::ng-deep .mat-form-field .mat-form-field-infix {
+  width: 400px !important;
+}
+
+button{
+
+  margin:20px;
+
+}
