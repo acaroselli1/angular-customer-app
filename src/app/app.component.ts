@@ -4,6 +4,8 @@ import { Customer } from "./customer";
 import { Observable } from 'rxjs';
 // import { UpdatedCustomer } from './updatedCustomer';
 
+import {Pipe, PipeTransform} from "@angular/core";
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",

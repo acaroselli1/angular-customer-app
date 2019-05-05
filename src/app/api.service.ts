@@ -8,22 +8,34 @@ import { Observable } from 'rxjs';
   providedIn: "root"
 })
 export class ApiService {
-  apiURL: string = "http://localhost:8080";
+  apiURL: string = "https://localhost:44323";
 
   customers: Observable<Customer[]>;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
+
+
+  
+  public getCustomers() {
+    this.customers = this.httpClient.get<Customer[]>(`${this.apiURL}/api/customers`);
+  }
+
+
+
 
   public createCustomer(customer: Customer) {
     return this.httpClient.post(`${this.apiURL}/api/customer`, customer);
   }
-  // public getCustomers() {
-  //   return this.httpClient.get<any>(`${this.apiURL}/api/customers`);
-  // }
 
-  public getCustomers() {
-    this.customers = this.httpClient.get<Customer[]>(`${this.apiURL}/api/customers`);
+  public updateCustomer(customer: Customer) {
+    return this.httpClient.put<Customer>(
+      `${this.apiURL}/api/customers`,
+      customer
+    );
   }
+
+
+
 
   public getCustomerById(id: string) {
     return this.httpClient.get<Customer>(`${this.apiURL}/api/customer/${id}`);
@@ -31,13 +43,6 @@ export class ApiService {
   public deleteCustomer(id: string) {
     return this.httpClient.delete<Customer>(
       `${this.apiURL}/api/customer/${id}`
-    );
-  }
-
-  public updateCustomer(customer: Customer) {
-    return this.httpClient.put<Customer>(
-      `${this.apiURL}/api/customers`,
-      customer
     );
   }
 }
